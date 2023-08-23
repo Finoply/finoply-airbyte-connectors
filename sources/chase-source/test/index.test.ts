@@ -3,3 +3,5 @@ describe('index', () => {
     expect('OK').toEqual('OK');
   });
 });
+
+test('Read file', async () => {});

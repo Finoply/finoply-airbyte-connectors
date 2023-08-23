@@ -2,24 +2,27 @@
   "documentationUrl": "https://docs.faros.ai",
   "connectionSpecification": {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Jenkins Spec",
+    "title": "JPM Chase Spec",
     "type": "object",
-    "required": ["server_url", "user", "token"],
+    "required": ["host", "user", "password", "port"],
     "additionalProperties": true,
     "properties": {
-      "server_url": {
+      "host": {
         "type": "string",
-        "title": "Jenkins Server URL",
-        "examples": ["https://my-jenkins-server.example.com"]
+        "title": "The server host address",
+        "examples": ["www.host.com", "192.168.1.1"]
       },
       "user": {
         "type": "string",
-        "title": "Jenkins User"
+        "title": "The server user"
       },
-      "token": {
+      "password": {
         "type": "string",
-        "title": "Jenkins Token",
-        "airbyte_secret": true
+        "title": "The server user"
+      },
+      "port": {
+        "type": "integer",
+        "title": "The server port"
       }
     }
   }

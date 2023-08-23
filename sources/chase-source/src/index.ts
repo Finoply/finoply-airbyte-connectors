@@ -9,11 +9,8 @@ import {
 } from 'faros-airbyte-cdk';
 import VError from 'verror';
 
+import {Chase, ChaseConfig} from './chase';
 import {Builds} from './streams';
-
-interface SourceConfig extends AirbyteConfig {
-  readonly user: string;
-}
 
 /** The main entry point. */
 export function mainCommand(): Command {
@@ -23,16 +20,20 @@ export function mainCommand(): Command {
 }
 
 /** Example source implementation. */
-export class ChaseSource extends AirbyteSourceBase<SourceConfig> {
+export class ChaseSource extends AirbyteSourceBase<ChaseConfig> {
   async spec(): Promise<AirbyteSpec> {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     return new AirbyteSpec(require('../resources/spec.json'));
   }
-  async checkConnection(config: SourceConfig): Promise<[boolean, VError]> {
-    if (config.user === 'chris') {
-      return [true, undefined];
+  async checkConnection(config: ChaseConfig): Promise<[boolean, VError]> {
+    try {
+      const chase = Chase.instance(config, this.logger);
+      await chase.checkConnection();
+    } catch (err: any) {
+      return [false, err];
     }
-    return [false, new VError('User is not chris')];
+
+    return [true, undefined];
   }
   streams(): AirbyteStreamBase[] {
     return [new Builds(this.logger)];
