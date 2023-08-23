@@ -133,3 +133,11 @@ for how those files are used. These files should be committed to the repo.
 Run the tests with the provided script from the
 root repo folder `./scripts/source-acceptance-test.sh <source>`, where
 `<source>` is the folder name, e.g. `new-source`.
+
+docker run --rm chase-source spec 
+
+docker run --rm -v $(pwd)/test_files:/test_files chase-source check --config /test_files/config.json
+
+docker build . --build-arg path=sources/chase-source --build-arg version=0.0.1 -t chase-source
+
+bin/main check --config test_files/config.json

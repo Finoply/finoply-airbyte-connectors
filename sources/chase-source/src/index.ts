@@ -32,7 +32,6 @@ export class ChaseSource extends AirbyteSourceBase<ChaseConfig> {
     } catch (err: any) {
       return [false, err];
     }
-
     return [true, undefined];
   }
   streams(): AirbyteStreamBase[] {

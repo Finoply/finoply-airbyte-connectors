@@ -9,20 +9,24 @@
     "properties": {
       "host": {
         "type": "string",
-        "title": "The server host address",
+        "title": "Host",
+        "description": "The server host address",
         "examples": ["www.host.com", "192.168.1.1"]
       },
       "user": {
         "type": "string",
-        "title": "The server user"
+        "title": "User",
+        "description": "The server user"
       },
       "password": {
         "type": "string",
-        "title": "The server user"
+        "title": "Password",
+        "description": "The server user"
       },
       "port": {
         "type": "integer",
-        "title": "The server port"
+        "title": "Port",
+        "description": "The server port"
       }
     }
   }

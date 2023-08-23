@@ -26,6 +26,7 @@ export class Chase {
     return new Promise<void>((resolve, reject) => {
       this.client
         .on('ready', () => {
+          this.client.destroy();
           resolve(); // Resolve the promise when ready
         })
         .on('error', (err: Error) => {
@@ -36,9 +37,6 @@ export class Chase {
           port: this.config.port,
           username: this.config.user,
           password: this.config.password,
-          debug: (msg) => {
-            console.log(`SFTPLOG ${msg}`);
-          },
         });
     });
   }
