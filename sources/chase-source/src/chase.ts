@@ -27,10 +27,11 @@ export class Chase {
       this.client
         .on('ready', () => {
           this.client.destroy();
-          resolve(); // Resolve the promise when ready
+          resolve();
         })
         .on('error', (err: Error) => {
-          reject(err); // Reject the promise on error
+          this.client.destroy();
+          reject(err);
         })
         .connect({
           host: this.config.host,

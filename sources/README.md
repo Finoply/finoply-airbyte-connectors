@@ -138,6 +138,10 @@ docker run --rm chase-source spec
 
 docker run --rm -v $(pwd)/test_files:/test_files chase-source check --config /test_files/config.json
 
+docker run --rm -v $(pwd)/test_files/records:/test_files/records chase-source check --config /test_files/records/config.json
+
+docker run --rm -v $(pwd)/test_files/records:/test_files/records chase-source:latest read --config /test_files/records/config.json --catalog /test_files/records/full_configured_catalog.json
+
 docker build . --build-arg path=sources/chase-source --build-arg version=0.0.1 -t chase-source
 
 bin/main check --config test_files/config.json

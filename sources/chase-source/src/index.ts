@@ -10,7 +10,7 @@ import {
 import VError from 'verror';
 
 import {Chase, ChaseConfig} from './chase';
-import {Builds} from './streams';
+import {Builds, Records} from './streams';
 
 /** The main entry point. */
 export function mainCommand(): Command {
@@ -35,6 +35,6 @@ export class ChaseSource extends AirbyteSourceBase<ChaseConfig> {
     return [true, undefined];
   }
   streams(): AirbyteStreamBase[] {
-    return [new Builds(this.logger)];
+    return [new Records(this.logger)];
   }
 }
